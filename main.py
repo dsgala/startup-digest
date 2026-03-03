@@ -2,6 +2,9 @@ from agents.funding_agent import funding_agent
 from agents.hiring_agent import hiring_agent
 from agents.products_agent import products_agent
 from agents.composer_agent import composer_agent
+from utils.claude_client import usage_log
+from utils.cost_tracker import print_cost_report
+
 from datetime import date
 import time
 import os
@@ -37,3 +40,5 @@ subprocess.run([
 ])
 
 print("🔔 Desktop notification sent!")
+
+print_cost_report(usage_log)

@@ -7,15 +7,10 @@ load_dotenv()
 
 client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-def run_agent(system_prompt: str, user_message: str, use_search: bool = True, max_tokens: int = 800) -> str:
-    """
-    Core function every agent uses. Handles rate limits and server overloads automatically.
-    
-    system_prompt: defines the agent's role
-    user_message: the actual task
-    use_search: whether this agent needs web search
-    max_tokens: how long the response can be (composer needs more than search agents)
-    """
+# Global usage log for this run
+usage_log = []
+
+def run_agent(system_prompt: str, user_message: str, use_search: bool = True, max_tokens: int = 800, agent_name: str = "agent") -> str:
     
     tools = [{"type": "web_search_20250305", "name": "web_search"}] if use_search else []
 
@@ -31,6 +26,13 @@ def run_agent(system_prompt: str, user_message: str, use_search: bool = True, ma
                 tools=tools,
                 messages=[{"role": "user", "content": user_message}]
             )
+
+            # Track token usage
+            usage_log.append({
+                "agent": agent_name,
+                "input_tokens": response.usage.input_tokens,
+                "output_tokens": response.usage.output_tokens
+            })
 
             result = ""
             for block in response.content:

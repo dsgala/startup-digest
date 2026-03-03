@@ -27,7 +27,7 @@ def products_agent(date: str) -> str:
     """
 
     print("🔍 Products & Research Agent searching...")
-    result = run_agent(system_prompt, user_message, use_search=True)
+    result = run_agent(system_prompt, user_message, use_search=True, agent_name="Products Agent")
     print("✅ Products & Research Agent done")
 
     return result

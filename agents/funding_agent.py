@@ -25,7 +25,7 @@ def funding_agent(date: str) -> str:
     """
 
     print("🔍 Funding Agent searching...")
-    result = run_agent(system_prompt, user_message, use_search=True)
+    result = run_agent(system_prompt, user_message, use_search=True, agent_name="Funding Agent")
     print("✅ Funding Agent done")
     
     return result

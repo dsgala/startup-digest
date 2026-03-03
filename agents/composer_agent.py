@@ -57,6 +57,6 @@ def composer_agent(funding: str, hiring: str, products: str, date: str) -> str:
     """
 
     print("✍️ Composer Agent writing your digest...")
-    result = run_agent(system_prompt, user_message, use_search=False, max_tokens=2000)
+    result = run_agent(system_prompt, user_message, use_search=False, max_tokens=2000, agent_name="Composer Agent")
     print("✅ Digest ready!")
     return result
