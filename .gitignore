@@ -1,0 +1,6 @@
+.env
+startup_digest_env/
+__pycache__/
+*.pyc
+*.txt
+.DS_Store
